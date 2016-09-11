@@ -32,7 +32,7 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
-  test "email should accept valid formats" do
+  test "email validation should accept valid formats" do
     valid_addresses = %w[user@example.com USER@example.COM A_US-EN@foo.bar.org 
     first.last@foo.jp mike+bob@baz.cn]
     
@@ -42,6 +42,14 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
-
+  test "email validation should reject invalid formats" do
+    invalid_addresses = %w[user@example,com user_at_bar.com user.name@example.
+    foo@bar_baz.com foo@bar+baz.com]
+    
+    invalid_addresses.each do |invalid_address|
+       @user.email = invalid_address
+       assert_not @user.valid?
+    end
+  end
 
 end
