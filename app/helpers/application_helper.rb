@@ -1,8 +1,8 @@
 module ApplicationHelper
 
-def full_title(title = '')
+def full_title(page_title = '')
   base_title = "Microblog"
-  if title.empty?
+  if page_title.empty?
     base_title
   else
     "#{page_title} | #{base_title}"
