@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  
+  before_save {self.email = email.downcase}
 
   VALID_EMAIL_REGEX = /[\w.+\-]+@[a-z\-.]+\.[a-z]+/i
 
