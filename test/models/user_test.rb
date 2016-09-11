@@ -59,5 +59,12 @@ class UserTest < ActiveSupport::TestCase
     assert_not duplicate_user.valid?
   end
 
+  test "email address user@example.com and USER@example.com should be treated the same" do
+    duplicate_user =  @user.dup
+    duplicate_user.email =  @user.email.upcase
+    @user.save
+    assert_not duplicate_user.valid?
+  end
+
 
 end
