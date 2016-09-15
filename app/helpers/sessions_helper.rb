@@ -10,6 +10,7 @@ module SessionsHelper
     user.remember
     # set the cookies
     cookies.permanent.signed[:user_id] = user.id
+    cookies.permanent.signed[:remember_token] = user.remember_token
   end
 
   #returns the current logged-in user
