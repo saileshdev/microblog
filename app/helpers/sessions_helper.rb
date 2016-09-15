@@ -5,6 +5,13 @@ module SessionsHelper
     session[:user_id] = user.id
   end
 
+  # remeber a user in persistent sessions
+  def remember(user)
+    user.remember
+    # set the cookies
+    cookies[:user_id] = {value: user_id, expires: 20.years.from_nows.utc }
+  end
+
   #returns the current logged-in user
   def current_user
       @current_user ||= User.find_by(id: session[:user_id])
