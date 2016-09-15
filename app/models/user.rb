@@ -23,4 +23,10 @@ class User < ActiveRecord::Base
   def User.new_token
     SecureRandom.urlsafe_base64
   end
+
+  # remember a user in the db for use in peristent sessions
+  def remember
+    self.remember_token = User.new_token
+    update_attributes(:remember_digest, User.digest(remember_token))
+  end
 end
