@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
     # cost here is the computational cost. Bcrypt is designed to be slow to make it difficult for brute-force
     # but here we want the cost to be low, ie more speed as it is just a test
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
-      BCrypt::Password.create(string, cost: cost)
+    return BCrypt::Password.create(string, cost: cost)
   end
 
   # returns a random token
@@ -39,7 +39,10 @@ class User < ActiveRecord::Base
   end
 
   def authenticated?(remember_token)
-    return false if remember_digest.nil?
-    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+   return false if remember_digest.nil?
+   #BCrypt::Password.new(remember_digest).is_password?(remember_token)
+   sha1_password = Digest::SHA1.hexdigest(remember_token)
+   BCrypt::Password.new(remember_digest) == sha1_password
   end
+
 end
