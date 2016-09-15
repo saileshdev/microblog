@@ -34,6 +34,6 @@ class User < ActiveRecord::Base
   end
 
   def authenticated?(remember_token)
-    Brcypt::Password.new(remember_digest) == remember_token
+    BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
 end
