@@ -2,3 +2,8 @@ valid_user:
   name: Valid User
   email: valid@user.com
   password_digest: <%= User.digest("password") %>
+
+second_user:
+  name: Second User
+  email: second@user.com
+  password_digest: <%= User.digest("password") %>

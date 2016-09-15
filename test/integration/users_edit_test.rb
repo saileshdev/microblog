@@ -4,6 +4,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   
   def setup
     @user = users(:valid_user)
+    @other_user = users(:second_user)
   end
   
   test "unsuccessful edit" do
@@ -30,4 +31,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_equal @user.email, email
   end
 
+  test "should redirect to edit when logged in as wrong user" do
+    log_in_as(@other_user)
+  end
 end
