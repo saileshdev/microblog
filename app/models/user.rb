@@ -32,4 +32,8 @@ class User < ActiveRecord::Base
     self.remember_token = User.new_token
     update_attribute(:remember_digest, User.digest(remember_token))
   end
+
+  def authenticated?(remember_token)
+    Brcypt::Password.new(remember_digest) == remember_token
+  end
 end
