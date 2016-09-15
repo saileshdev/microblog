@@ -9,7 +9,7 @@ module SessionsHelper
   def remember(user)
     user.remember
     # set the cookies
-    cookies[:user_id] = {value: user_id, expires: 20.years.from_nows.utc }
+    cookies.permanent[:user_id] = user.id
   end
 
   #returns the current logged-in user
