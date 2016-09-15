@@ -52,4 +52,8 @@ module SessionsHelper
     @current_user = nil
   end
 
+  #store the URL trying to be accessed
+  def store_location
+    session[:forwarding_url] = request.url if request.get?
+  end
 end
