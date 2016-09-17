@@ -1,6 +1,12 @@
 require 'test_helper'
 
 class UsersSignupTest < ActionDispatch::IntegrationTest
+
+  def setup
+  #we are clearing the array before any test
+  ActionMailer::Base.deliveries.clear
+  #ActionMailer::Base.deliveries is an array and the length becomes 1 when a mail is sent 
+  end
   
   test "invalid signup information" do
     get signup_path
@@ -18,9 +24,11 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     get signup_path
    
     assert_difference 'User.count',1 do 
-    post_via_redirect users_path, user: {name: "Example user",email: "user@example.com", password: "password", password_confirmation: "password"}
+    post users_path, user: {name: "Example user",email: "user@example.com", password: "password", password_confirmation: "password"}
     
     end
+
+    assert_equal 1, ActionMailer::Base.deliveries.size
     #assert_template "users/show" 
     #assert is_logged_in?
   end
