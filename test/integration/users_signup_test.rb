@@ -36,6 +36,10 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     log_in_as(user)
     assert_not is_logged_in?
 
+    #invalid activation token
+    get edit_account_activation_path("invalid token")
+    assert_not is_logged_in?
+     
     #assert_template "users/show" 
     #assert is_logged_in?
   end
