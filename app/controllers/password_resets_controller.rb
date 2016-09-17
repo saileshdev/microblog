@@ -24,7 +24,17 @@ class PasswordResetsController < ApplicationController
   end
 
   def update
-    if @user.update_attributes(user_params)
+    if @user.password_reset_expired?
+      flash[:danger] = "Password reset has expired"
+      redirect_to new_password_reset_url
+    elsif @user.update_attributes(user_params)
+      log_in @user
+      flash[:success] = "Password has been reset"
+      redirect_to @user
+    else
+      #render back the edit form
+      render "edit"
+    end 
   end
 
   private
