@@ -25,10 +25,13 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
    
     assert_difference 'User.count',1 do 
     post users_path, user: {name: "Example user",email: "user@example.com", password: "password", password_confirmation: "password"}
-    
     end
 
     assert_equal 1, ActionMailer::Base.deliveries.size
+    
+    user = assigns(:user) #this gets the instance variable @user from the create action
+    assert_not user.activated?
+
     #assert_template "users/show" 
     #assert is_logged_in?
   end
