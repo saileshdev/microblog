@@ -32,6 +32,10 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     user = assigns(:user) #this gets the instance variable @user from the create action
     assert_not user.activated?
 
+    #try to log in before activation
+    log_in_as(user)
+    assert_not is_logged_in?
+
     #assert_template "users/show" 
     #assert is_logged_in?
   end
