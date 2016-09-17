@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'account_acivations/edit'
+
   root 'static_pages#home'
   
   get "home" =>  'static_pages#home'
