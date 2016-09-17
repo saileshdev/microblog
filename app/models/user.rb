@@ -65,6 +65,11 @@ class User < ActiveRecord::Base
     self.update_attribute(:reset_sent_at, Time.zone.now)
   end
   
+  #sends password reset email
+  def send_password_reset_email
+    UserMailer.password_reset(self).deliver_now
+  end
+
   private
   
   #creates and assigns the activation token and digest
