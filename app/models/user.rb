@@ -70,6 +70,11 @@ class User < ActiveRecord::Base
     UserMailer.password_reset(self).deliver_now
   end
 
+  #returns true is a password reset has expired
+  def password_reset_expired?
+   self.reset_sent_at < 2.hours.ago 
+  end
+
   private
   
   #creates and assigns the activation token and digest
