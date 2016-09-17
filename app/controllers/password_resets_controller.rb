@@ -23,6 +23,9 @@ class PasswordResetsController < ApplicationController
   def edit
   end
 
+  def update
+  end
+
   private
   
   def get_user
