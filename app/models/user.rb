@@ -45,5 +45,12 @@ class User < ActiveRecord::Base
    sha1_password = Digest::SHA1.hexdigest(remember_token)
    BCrypt::Password.new(remember_digest) == sha1_password
   end
-
+  
+  private
+  
+  #creates and assigns the activation token and digest
+  def create_activation_digest
+    self.activation_token = User.new_token
+    self.activation_digest = User.digest(activation_token)
+  end
 end
