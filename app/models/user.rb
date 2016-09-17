@@ -46,6 +46,17 @@ class User < ActiveRecord::Base
    #sha1_password = Digest::SHA1.hexdigest(remember_token)
    #BCrypt::Password.new(remember_digest) == sha1_password
   end
+
+  #activate an account
+  def activate
+    self.update_attribute(:activated, true)
+    self.update_attribute(:activated_at, Time.zone.now)
+  end
+  
+  #sends activation email
+  def send_activation_email
+    UserMailer.account_activation(self).deliver_now
+  end
   
   private
   
