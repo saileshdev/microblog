@@ -39,11 +39,12 @@ class User < ActiveRecord::Base
     update_attribute(:remember_digest, nil)
   end
 
-  def authenticated?(remember_token)
-   return false if remember_digest.nil?
-   #BCrypt::Password.new(remember_digest).is_password?(remember_token)
-   sha1_password = Digest::SHA1.hexdigest(remember_token)
-   BCrypt::Password.new(remember_digest) == sha1_password
+  def authenticated?(attribute, token)
+   digest = self.send("#{attribute}_digest")
+   return false if digest.nil?
+   BCrypt::Password.new(digest).is_password?(token)
+   #sha1_password = Digest::SHA1.hexdigest(remember_token)
+   #BCrypt::Password.new(remember_digest) == sha1_password
   end
   
   private
