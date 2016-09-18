@@ -12,6 +12,11 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
   test "password resets" do
     get new_password_reset_path
     assert_template 'password_resets/new'
+    
+    #invalid email not in db
+    post password_resets_path, password_reset: {email: "invalid_email"}
+    assert_not flash.empty?
+    assert_template 'password_resets/new'
 
   end
 end
