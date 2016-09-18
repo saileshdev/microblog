@@ -18,5 +18,11 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?
     assert_template 'password_resets/new'
 
+    #valid email
+    post password_resets_path, password_reset: {email: @user.email}
+    assert_not flash.empty?
+    assert_redirected_to root_url
+
+
   end
 end
