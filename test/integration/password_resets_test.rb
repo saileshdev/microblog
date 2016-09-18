@@ -56,5 +56,13 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
              password_confirmation: "barqux"}
     assert_select "div#error_explanation"
 
+    #valid password and confirmation
+    patch password_reset_path(user.reset_token), 
+      email: user.email, #this is the hidden email passed by the form
+      user: {password: "new_password",
+             password_confirmation: "new_password"}
+    assert is_logged_in?
+    assert_not flash.empty?
+    assert_redirected_to user
   end
 end
