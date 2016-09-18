@@ -9,5 +9,9 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
   @user = users(:valid_user)
   end
 
-  
+  test "password resets" do
+    get new_password_reset_path
+    assert_template 'password_resets/new'
+
+  end
 end
