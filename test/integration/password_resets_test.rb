@@ -27,8 +27,16 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
 
     #password reset form
     user = assigns(:user)
+    
     #wrong email
-     get edit_password_reset_path(user.reset_token, email:"invalid_email")
-     assert_redirected_to root_url 
+    get edit_password_reset_path(user.reset_token, email:"invalid_email")
+    assert_redirected_to root_url
+    
+    #inactive user
+    user.toggle!(:activated)
+    get edit_password_reset_path(user.reset_token, email: user.email)
+    assert_redirected_to root_url
+    user.toggle!(:activated)
+      
   end
 end
