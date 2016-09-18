@@ -49,5 +49,12 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
     #check is emial is passed as a hidden field
     assert_select "input[name=email][type=hidden][value=?]", user.email
 
+    #password and password_confirmation mismatch
+    patch password_reset_path(user.reset_token), 
+      email: user.email, #this is the hidden email passed by the form
+      user: {password: "foobaz",
+             password_confirmation: "barqux"}
+    assert_select "div#error_explanation"
+
   end
 end
