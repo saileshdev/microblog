@@ -6,6 +6,7 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
   #we are clearing the array before any test
   ActionMailer::Base.deliveries.clear
   #ActionMailer::Base.deliveries is an array and the length becomes 1 when a mail is sent 
+  @user = users(:valid_user)
   end
 
   
