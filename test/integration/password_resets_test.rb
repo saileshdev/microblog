@@ -46,5 +46,8 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
     get edit_password_reset_path(user.reset_token, email: user.email)
     assert_template "password_resets/edit"
 
+    #check is emial is passed as a hidden field
+    assert_select "input[name=email][type=hidden][value=?]", user.email
+
   end
 end
