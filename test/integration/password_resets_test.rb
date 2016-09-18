@@ -42,5 +42,9 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
     get edit_password_reset_path("invalid_token", email: user.email)
     assert_redirected_to root_url
 
+    #right email, valid token
+    get edit_password_reset_path(user.reset_token, email: user.email)
+    assert_template "password_resets/edit"
+
   end
 end
