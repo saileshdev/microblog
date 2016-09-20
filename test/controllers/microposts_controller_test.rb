@@ -6,7 +6,7 @@ class MicropostsControllerTest < ActionController::TestCase
     @microposts = microposts(:orange)
   end
 
-  test "should redirect users when not logged in" do
+  test "should redirect create when not logged in" do
     assert_no_difference "Micropost.count" do
        post :create, micropost: {content: "Lorem ipsum"}
     end
