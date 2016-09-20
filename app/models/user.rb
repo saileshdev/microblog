@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   
-  has_many :microposts
+  has_many :microposts, dependent: :destroy
 
   # creates a virtual attribute remember_token which exists only in memory and not in db
   attr_accessor :remember_token, :activation_token, :reset_token
