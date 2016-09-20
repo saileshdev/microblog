@@ -1,7 +1,10 @@
 require 'test_helper'
 
 class MicropostTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  
+  test "should be valid" do
+    assert @micropost.valid?
+  end
+
+
 end
