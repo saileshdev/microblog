@@ -13,6 +13,7 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
    assert_template 'users/show'
 
   assert_select 'title', full_title(@user.name) 
+  assert_select 'h1>img.gravatar'
   end
 
 end
