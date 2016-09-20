@@ -15,3 +15,13 @@ User.create!(name: "Admin User", email: "admin@user.com", password: "adminpasswo
   password = "password"
   User.create!(name: name, email: email, password: password, password_confirmation: password, activated: true, activated_at: Time.zone.now)
 end
+
+# take the first 6 users
+users = User.order(:created_at).take(6)
+#.first(6) also works instead of .take(6)
+
+50.times do
+  # lets user the faker gem to create a lorem ipsum sentence of length 5
+  content = Faker::Lopem.sentence(5)
+  users.each {|user| user.microposts.create!(content: content)}
+end
