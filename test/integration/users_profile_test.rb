@@ -14,6 +14,8 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
 
   assert_select 'title', full_title(@user.name) 
   assert_select 'h1>img.gravatar'
+
+  assert_match @user.microposts.count.to_s, response.body
   end
 
 end
