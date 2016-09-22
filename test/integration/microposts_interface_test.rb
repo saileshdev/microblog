@@ -6,7 +6,10 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     @user = users(:valid_user)
   end
 
-  # test "the truth" do
-  #   assert true
-  # end
+  test "micropost interface" do
+    log_in_as(@user)
+    get root_path
+    assert_select "div.pagination"
+  end
+
 end
