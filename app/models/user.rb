@@ -76,6 +76,11 @@ class User < ActiveRecord::Base
   def password_reset_expired?
    self.reset_sent_at < 2.hours.ago 
   end
+  
+  #defines a proto-feed
+  def feed
+   Micropost.where("user_id=?",id)
+  end 
 
   private
   
