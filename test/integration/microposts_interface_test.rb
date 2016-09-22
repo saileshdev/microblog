@@ -15,6 +15,11 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     post microposts_path, micropost: {content: ""}
     assert_select "div#error_explanation"
 
+    #valid submission
+    content = "This is a valid micropost"
+    assert_difference "Micropost.count", 1 do
+      post microposts_path, micropost: {content: content}
+    end
   end
 
 end
