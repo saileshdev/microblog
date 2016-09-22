@@ -32,6 +32,10 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     assert_difference "Micropost.count", -1 do
       delete micropost_path(first_micropost)
     end
+
+    #visit a different user
+    get user_path(users(:second_user))
+    assert_select "a", text: "delete", count: 0
   end
 
 end
