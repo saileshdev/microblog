@@ -1,8 +1,12 @@
-<div class="center jumbotron">
+<% if logged_in? %>
+  
+<% else %>
+  <div class="center jumbotron">
 
-<h1>Welcome to Microblog!</h1>
+  <h1>Welcome to Microblog!</h1>
 
-<h2>Enjoy! Find yourself at home!</h2>
+  <h2>Enjoy! Find yourself at home!</h2>
 
-<%= link_to "Sign up now!",signup_path, class: "btn btn-lg btn-primary" %>
-</div>
+  <%= link_to "Sign up now!",signup_path, class: "btn btn-lg btn-primary" %>
+  </div>
+<% end %>
