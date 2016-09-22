@@ -15,6 +15,8 @@ def create
 end
 
 def destroy
+  @micropost.destroy
+  flash[:success] = "Micropost deleted"
 end
 
 private
