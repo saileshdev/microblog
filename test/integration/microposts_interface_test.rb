@@ -12,7 +12,9 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     assert_select "div.pagination"
 
     #invalid submission
-    post microposts_path, micropost: {content: ""}
+    assert_no_difference "Micropost.count" do
+      post microposts_path, micropost: {content: ""}
+    end
     assert_select "div#error_explanation"
 
     #valid submission
@@ -20,6 +22,9 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     assert_difference "Micropost.count", 1 do
       post microposts_path, micropost: {content: content}
     end
+    assert_redirected_to root_url
+    follow_redirect! 
+    assert_match content, response.body
   end
 
 end
