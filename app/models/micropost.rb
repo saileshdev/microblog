@@ -11,7 +11,7 @@ class Micropost < ActiveRecord::Base
 
     #validates the size of an uploaded picture
     def picture_size
-      if pictures.size > 5.megabytes
+      if picture.size > 5.megabytes
         errors.add(:picture, "should be less than 5MB")
       end
     end
