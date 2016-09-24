@@ -9,6 +9,7 @@ Main showcase: https://limitless-reaches-55599.herokuapp.com/
 
 ![Cover Image](image.png)
 
+
 ### Features:
 
  - Registration, authentication
@@ -24,6 +25,38 @@ Main showcase: https://limitless-reaches-55599.herokuapp.com/
  - Uses Bcrypt hashing algorithm to store passwords 
  - Responsive UI. Uses Saas.
  - Extensive test coverage using minitest
+
+
+### Running Locally
+
+Make sure you have [Ruby](https://www.ruby-lang.org), [Bundler](http://bundler.io) and the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
+
+```sh
+git clone https://github.com/saileshdev/shrimp
+cd shrimp
+bundle install --without production
+bundle exec rake db:migrate
+bundle exec rake db:seed
+bundle exec rake test
+rails server
+```
+
+Your app should now be running on [localhost:3000](http://localhost:3000/).
+
+
+### Deploying to Heroku
+
+```sh
+heroku create
+git push heroku master
+heroku run rake db:migrate
+heroku run rake db:seed
+heroku open
+```
+
+
+
+
 
 
 
