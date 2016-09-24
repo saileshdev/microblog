@@ -55,6 +55,8 @@ heroku open
 ```
 
 
+### License
+MIT License. See LICENSE file. 
 
 
 
