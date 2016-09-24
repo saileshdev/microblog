@@ -1,10 +1,13 @@
 ## Shrimp
 
 Shrimp is a full-featured, micro-blogging platform which allows users to blog.
+
 Main showcase: https://limitless-reaches-55599.herokuapp.com/
 
 > Credentials:
+>
 > Email    - example-1@user.com
+>
 > Password - password
 
 ![Cover Image](image.png)
